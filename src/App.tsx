@@ -1,26 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import { SortingButton } from './components/button/button';
+import { SortingType } from './components/button/dto';
 
-function App() {
+const App = () => {
+  const [currentSort, setCurrentSort] = useState<string>('');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: '100%',
+        }}
+      >
+        <SortingButton
+          onButtonClicked={(c) => setCurrentSort(c)}
+          text='Bubble Sort'
+          type={SortingType.bubbleSort}
+        />
+        <SortingButton
+          onButtonClicked={(c) => setCurrentSort(c)}
+          text='Insertion Sort'
+          type={SortingType.insertionSort}
+        />
+        <SortingButton
+          onButtonClicked={(c) => setCurrentSort(c)}
+          text='Quick Sort'
+          type={SortingType.quickSort}
+        />
+        <SortingButton
+          onButtonClicked={(c) => setCurrentSort(c)}
+          text='Selection Sort'
+          type={SortingType.selectionSort}
+        />
+      </div>
+      <div>
+        <h1>{currentSort}</h1>
+      </div>
     </div>
   );
-}
+};
 
 export default App;
